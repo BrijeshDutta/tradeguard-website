@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trade Guard Docs</title>
+  <meta name="description" content="Quickstart, API examples, and logging configuration guidance." />
+  <meta property="og:title" content="Trade Guard Docs" />
+  <meta property="og:description" content="Quickstart, API examples, and logging configuration guidance." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html">
+          
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trade Guard logo">
+  <defs>
+    <linearGradient id="g" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6ae4ff"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 6C20.4 6 11 15.4 11 27c0 15.6 18.8 28.3 20 29 1.2-.7 22-13.4 22-29C53 15.4 43.6 6 32 6Z" fill="url(#g)" opacity="0.25"/>
+  <path d="M32 10c-9.9 0-18 8.1-18 18 0 12.9 14.9 23.9 18 25.9 3.1-2 18-13 18-25.9 0-9.9-8.1-18-18-18Z" stroke="url(#g)" stroke-width="2"/>
+  <path d="M24 33l5 5 11-12" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 22h20" stroke="url(#g)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M22 26h12" stroke="url(#g)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+</svg>
+
+          <div>
+            <div class="brand-name">Trade Guard</div>
+            <div class="badge">Energy trading control plane</div>
+          </div>
+        </a>
+        <nav class="menu" aria-label="Primary">
+          <a href="product.html" >Product</a>
+          <a href="pricing.html" >Pricing</a>
+          <a href="security.html" >Security</a>
+          <a href="docs.html" style="color: var(--text)">Docs</a>
+          <a href="contact.html" >Contact</a>
+        </nav>
+        <div style="display:flex;gap:10px;align-items:center">
+          <a class="cta secondary" href="docs.html#quickstart">Quickstart</a>
+          <a class="cta" href="contact.html">Request a demo</a>
+          <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu" aria-label="Mobile">
+          <a href="product.html">Product</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="security.html">Security</a>
+          <a href="docs.html">Docs</a>
+          <a href="contact.html">Contact</a>
+          <div class="divider"></div>
+          <a href="docs.html#quickstart">Quickstart</a>
+          <a href="contact.html">Request a demo</a>
+        </div>
+      </div>
+    </header>
+    
+<main>
+
+<section class="section">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Home</a> / Docs</div>
+    <h1 class="page-title">Documentation</h1>
+    <p class="sub">Quickstart guides and example API calls. Replace placeholders with your real endpoints and schemas.</p>
+
+    <div class="panel" id="quickstart">
+      <div class="panel-inner">
+        <h2 style="margin:0 0 10px">Quickstart</h2>
+        <p class="sub" style="margin:0 0 16px">Run locally with Docker (example) and send your first trade.</p>
+
+<pre style="white-space:pre-wrap;word-break:break-word;background:rgba(0,0,0,.25);border:1px solid var(--border);padding:14px;border-radius:14px;color:#e8eefc;overflow:auto"><code># 1) Start services
+docker compose up -d --build
+
+# 2) Export a bearer token (example)
+export TRADE_GUARD_TOKEN="&lt;your-token&gt;"
+
+# 3) Send a trade
+curl -X POST "http://localhost:8080/api/trades"   -H "Authorization: Bearer $TRADE_GUARD_TOKEN"   -H "Content-Type: application/json"   -d @examples/UK_WHOLESALE_POWER_TRADE_V1.json
+</code></pre>
+
+        <p class="note">If your backend uses a different port/path, update the examples here.</p>
+      </div>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div class="panel" id="api">
+      <div class="panel-inner">
+        <h2 style="margin:0 0 10px">API shape (example)</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>POST /api/trades</h3>
+            <p>Ingest and validate a trade payload. Returns an ID and validation outcome.</p>
+          </div>
+          <div class="card">
+            <h3>GET /api/trades/:id</h3>
+            <p>Retrieve normalized trade details and audit status for a given trade ID.</p>
+          </div>
+          <div class="card">
+            <h3>GET /api/health</h3>
+            <p>Health check for load balancers and uptime monitors.</p>
+          </div>
+          <div class="card">
+            <h3>GET /api/logs?level=high</h3>
+            <p>Search logs by severity (depending on your implementation and permissions).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div class="panel" id="logging">
+      <div class="panel-inner">
+        <h2 style="margin:0 0 10px">Logging configuration</h2>
+        <p class="sub" style="margin:0 0 14px">
+          Recommended: allow clients to set logging levels via environment variables or a config file (low/medium/high).
+        </p>
+
+<pre style="white-space:pre-wrap;word-break:break-word;background:rgba(0,0,0,.25);border:1px solid var(--border);padding:14px;border-radius:14px;color:#e8eefc;overflow:auto"><code># Example env vars
+LOG_LEVEL=medium
+LOG_FORMAT=json
+LOG_REDACT_FIELDS=token,authorization
+</code></pre>
+
+        <p class="note">Make sure sensitive fields are redacted before logs leave the application boundary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+    <footer class="footer">
+      <div class="container" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+        <div style="display:flex;gap:10px;align-items:center">
+          <span style="opacity:.9">© <span id="y"></span> Trade Guard</span>
+          <span class="badge">Built for UK wholesale power</span>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="security.html">Security</a>
+          <a href="docs.html">Documentation</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+      <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      <h4 id="toastTitle">Saved</h4>
+      <p id="toastMsg">Done.</p>
+    </div>
+    
+<script src="assets/scripts.js"></script>
+</body>
+</html>

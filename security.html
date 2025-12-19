@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trade Guard Security</title>
+  <meta name="description" content="Security and compliance overview: bearer token auth, audit logging, network controls, data handling." />
+  <meta property="og:title" content="Trade Guard Security" />
+  <meta property="og:description" content="Security and compliance overview: bearer token auth, audit logging, network controls, data handling." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html">
+          
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trade Guard logo">
+  <defs>
+    <linearGradient id="g" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6ae4ff"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 6C20.4 6 11 15.4 11 27c0 15.6 18.8 28.3 20 29 1.2-.7 22-13.4 22-29C53 15.4 43.6 6 32 6Z" fill="url(#g)" opacity="0.25"/>
+  <path d="M32 10c-9.9 0-18 8.1-18 18 0 12.9 14.9 23.9 18 25.9 3.1-2 18-13 18-25.9 0-9.9-8.1-18-18-18Z" stroke="url(#g)" stroke-width="2"/>
+  <path d="M24 33l5 5 11-12" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 22h20" stroke="url(#g)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M22 26h12" stroke="url(#g)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+</svg>
+
+          <div>
+            <div class="brand-name">Trade Guard</div>
+            <div class="badge">Energy trading control plane</div>
+          </div>
+        </a>
+        <nav class="menu" aria-label="Primary">
+          <a href="product.html" >Product</a>
+          <a href="pricing.html" >Pricing</a>
+          <a href="security.html" style="color: var(--text)">Security</a>
+          <a href="docs.html" >Docs</a>
+          <a href="contact.html" >Contact</a>
+        </nav>
+        <div style="display:flex;gap:10px;align-items:center">
+          <a class="cta secondary" href="docs.html#quickstart">Quickstart</a>
+          <a class="cta" href="contact.html">Request a demo</a>
+          <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu" aria-label="Mobile">
+          <a href="product.html">Product</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="security.html">Security</a>
+          <a href="docs.html">Docs</a>
+          <a href="contact.html">Contact</a>
+          <div class="divider"></div>
+          <a href="docs.html#quickstart">Quickstart</a>
+          <a href="contact.html">Request a demo</a>
+        </div>
+      </div>
+    </header>
+    
+<main>
+
+<section class="section">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Home</a> / Security</div>
+    <h1 class="page-title">Security & compliance</h1>
+    <p class="sub">Security is not a feature — it’s the foundation. Use this page to document how Trade Guard is deployed and protected in your environments.</p>
+
+    <div class="grid2">
+      <div class="panel feature">
+        <div class="icon">🔐</div>
+        <h3>Authentication</h3>
+        <p>Bearer tokens for API access, with recommended rotation and environment separation.</p>
+      </div>
+      <div class="panel feature">
+        <div class="icon">🧾</div>
+        <h3>Audit logging</h3>
+        <p>Structured logs with severity levels (low / medium / high) and correlation IDs for investigations.</p>
+      </div>
+      <div class="panel feature">
+        <div class="icon">🧱</div>
+        <h3>Network controls</h3>
+        <p>Run behind a gateway/WAF, restrict ingress, and isolate services using container networks.</p>
+      </div>
+      <div class="panel feature">
+        <div class="icon">🧬</div>
+        <h3>Data handling</h3>
+        <p>Minimize sensitive data in logs, use redaction, and encrypt at rest and in transit.</p>
+      </div>
+    </div>
+
+    <hr class="sep" />
+
+    <div class="panel">
+      <div class="panel-inner">
+        <h2 style="margin:0 0 10px">Suggested controls checklist</h2>
+        <div class="grid2">
+          <div class="card"><h3>Transport security</h3><p>TLS everywhere; terminate at a gateway and re-encrypt to services.</p></div>
+          <div class="card"><h3>Secrets management</h3><p>Store tokens and keys in a secret manager — not in source code or images.</p></div>
+          <div class="card"><h3>Least privilege</h3><p>Separate tokens by client and role; restrict write actions where possible.</p></div>
+          <div class="card"><h3>Monitoring</h3><p>Alert on high-severity errors, auth failures, and unusual request volumes.</p></div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+          <a class="cta" href="contact.html">Book a security review</a>
+          <a class="cta secondary" href="docs.html#logging">Logging configuration</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+    <footer class="footer">
+      <div class="container" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+        <div style="display:flex;gap:10px;align-items:center">
+          <span style="opacity:.9">© <span id="y"></span> Trade Guard</span>
+          <span class="badge">Built for UK wholesale power</span>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="security.html">Security</a>
+          <a href="docs.html">Documentation</a>
+          <a href="contact.html">Support</a>
+        </div>
+      </div>
+      <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      <h4 id="toastTitle">Saved</h4>
+      <p id="toastMsg">Done.</p>
+    </div>
+    
+<script src="assets/scripts.js"></script>
+</body>
+</html>
